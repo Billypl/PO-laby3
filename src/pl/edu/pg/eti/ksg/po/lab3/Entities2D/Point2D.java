@@ -1,5 +1,7 @@
 package pl.edu.pg.eti.ksg.po.lab3.Entities2D;
 
+import pl.edu.pg.eti.ksg.po.lab3.Entities3D.Point3D;
+
 public class Point2D
 {
     private final double x, y;
@@ -8,6 +10,11 @@ public class Point2D
     {
         this.x = x;
         this.y = y;
+    }
+    public Point2D(Point2D p)
+    {
+        x = p.getX();
+        y = p.getY();
     }
 
     public double getX()

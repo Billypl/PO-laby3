@@ -16,7 +16,7 @@ public class TransformationComposer2D implements Transformation2D
     @Override
     public Point2D transform(Point2D p)
     {
-        var result = new Point2D(p.getX(), p.getY());
+        var result = new Point2D(p);
         for(var tr : trans)
             result = tr.transform(result);
         return result;
@@ -25,9 +25,10 @@ public class TransformationComposer2D implements Transformation2D
     @Override
     public Transformation2D getInverseTransformation() throws NoInverseTransformationException
     {
-        var reversed = new Transformation2D[this.trans.length];
-        for(int i = 0; i < reversed.length; i++)
-            reversed[i] = this.trans[this.trans.length - i - 1];
+        var reversed = new Transformation2D[trans.length];
+        for(int i = 0; i < trans.length; i++)
+            reversed[i] = trans[trans.length - i - 1].getInverseTransformation();
         return new TransformationComposer2D(reversed);
     }
 }
+
